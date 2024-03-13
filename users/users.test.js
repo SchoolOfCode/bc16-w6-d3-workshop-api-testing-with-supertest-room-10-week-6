@@ -4,8 +4,7 @@ import app from "../app";
 
 test("GET /api/health works", async () => {
   const response = await request(app).get("/api/health");
-  //.set("Accept", "application/json");
-  // expect(response.headers["Content-Type"]).toMatch("application / json"); //toMatch() uses regex
+  expect(response.headers["content-type"]).toMatch("application/json"); //toMatch() uses regex
   expect(response.status).toEqual(200);
   expect(response.body).toEqual({
     success: true,
