@@ -25,25 +25,11 @@ If there are certain parts of the code which you're unsure about, try copy-pasti
 Some questions that might help guide your exploration:
 
 - What endpoints and types of requests does this API support?
-  router - /api/users
-
-1. router.get("/", getUsers);
-2. router.get("/:id", getUserById);
-3. router.post("/", createUser);
-4. router.delete("/:id", deleteUserById);
-
-- What's the main purpose of the `db/helpers.js` file? helpers.js holds the functions for managing the database & tables
+- What's the main purpose of the `db/helpers.js` file?
 - What's the main purpose of each file in the `users` folder?
-
-1. controller: executes the api requests (contains the logic)
-2. model: sql commands
-3. router: contains routing functionalities related to the users for containing routes for user managements from a separate file for organisation and reusability.
-
-- Where and how are the files in the `users` folder used within the overall API and Express app? (see above)
-
-- What endpoints/operations does the API support? (see above)
-
-- What's the purpose of the `vitest.config.js` file? It allows us to connect to the database while running the database, overriding the default settings of vitest.
+- Where and how are the files in the `users` folder used within the overall API and Express app?
+- What endpoints/operations does the API support?
+- What's the purpose of the `vitest.config.js` file?
 
 ### 🎫 Ticket 2 - Setup
 
@@ -76,18 +62,18 @@ const express = require("express");
 const app = express();
 
 app.get("/user", function (req, res) {
-  res.status(200).json({ name: "john" });
+	res.status(200).json({ name: "john" });
 });
 
 describe("GET /users", function () {
-  it("responds with json", async function () {
-    const response = await request(app)
-      .get("/users")
-      .set("Accept", "application/json");
-    expect(response.headers["Content-Type"]).toMatch(/json/);
-    expect(response.status).toEqual(200);
-    expect(response.body.email).toEqual("foo@bar.com");
-  });
+	it("responds with json", async function () {
+		const response = await request(app)
+			.get("/users")
+			.set("Accept", "application/json");
+		expect(response.headers["Content-Type"]).toMatch(/json/);
+		expect(response.status).toEqual(200);
+		expect(response.body.email).toEqual("foo@bar.com");
+	});
 });
 ```
 
