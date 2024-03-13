@@ -3,15 +3,15 @@ import request from "supertest";
 import app from "../app";
 
 test("GET /api/health works", async () => {
-  const response = await request(app).get("/api/health");
-  //.set("Accept", "application/json");
-  // expect(response.headers["Content-Type"]).toMatch("application / json"); //toMatch() uses regex
-  expect(response.status).toEqual(200);
-  expect(response.body).toEqual({
-    success: true,
-    payload: "API is running correctly",
-  });
-  console.log(response.body);
+	const response = await request(app).get("/api/health");
+	//.set("Accept", "application/json");
+	expect(response.header["content-type"]).toMatch(/json/); //toMatch() uses regex
+	expect(response.status).toEqual(200);
+	expect(response.body).toEqual({
+		success: true,
+		payload: "API is running correctly",
+	});
+	console.log(response.header);
 });
 
 // Goal: make a GET request with Supertest to the /api/health
